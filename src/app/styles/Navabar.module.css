@@ -1,41 +1,111 @@
+/* MAIN NAVBAR ROW */
 .navbar {
   width: 100%;
-  height: 70px;
+  padding: 12px 40px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  border-bottom: 1px solid #e5e5e5;
-  background-color: white;
 }
 
+/* LEFT SECTION */
 .leftSection {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.menu {
-  display: flex;
-  list-style: none;
-  gap: 40px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-.menu li {
   cursor: pointer;
 }
 
+/* Show hamburger only on mobile */
+.mobileMenuIcon {
+  display: none;
+}
+
+/* Show logo icon only on desktop */
+.desktopLogoIcon {
+  display: block;
+}
+
+/* CENTER (LOGO TEXT + MENU BELOW) */
+.centerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* DESKTOP MENU */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 45px;
+  margin-top: 40px;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.menu li:hover {
+  color: #000;
+  transition: 0.2s;
+}
+
+/* RIGHT SECTION */
 .rightSection {
   display: flex;
+  gap: 18px;
   align-items: center;
-  gap: 20px;
+}
+
+/* ------------------------------ */
+/* MOBILE STYLES */
+/* ------------------------------ */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  /* Hide desktop menu */
+  .menu {
+    display: none;
+  }
+
+  /* Hamburger visible */
+  .mobileMenuIcon {
+    display: block;
+  }
+
+  /* Desktop logo icon hidden */
+  .desktopLogoIcon {
+    display: none;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+}
+
+/* MOBILE MENU DROPDOWN */
+.mobileMenu {
+  list-style: none;
+  background: white;
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e5e5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+
+  font-size: 18px;
+  font-weight: 700;
 }
