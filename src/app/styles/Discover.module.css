@@ -1,0 +1,39 @@
+.discoverWrapper {
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+/* FIRST LINE – BIG & BOLD */
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+/* SECOND LINE – SEMI-BOLD & SMALLER */
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    max-width: 90%;
+  }
+}
