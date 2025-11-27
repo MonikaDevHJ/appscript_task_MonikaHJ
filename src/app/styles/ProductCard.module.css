@@ -1,0 +1,16 @@
+.card {
+  width: 100%;
+  cursor: pointer;
+}
+
+.image {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.title {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
