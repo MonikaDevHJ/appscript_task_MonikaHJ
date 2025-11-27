@@ -1,16 +1,83 @@
+.gridSection {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+}
+
+/* CARD */
 .card {
   width: 100%;
   cursor: pointer;
 }
 
-.image {
+/* IMAGE FIX — SAME SIZE FOR ALL PRODUCTS */
+.imageWrapper {
+  width: 100%;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
   border-radius: 8px;
-  object-fit: cover;
 }
 
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* uniform height */
+  background: #fafafa; /* makes it clean */
+  padding: 10px;
+}
+
+/* ❤️ Wishlist */
+.wishlist {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
+.heartIcon {
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* TITLE — max 2 lines */
 .title {
   margin-top: 10px;
-  font-weight: 600;
   font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  height: 38px; /* fixed */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
+/* PRICE */
+.price {
+  color: #333;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
