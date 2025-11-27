@@ -1,86 +1,154 @@
 .footer {
   width: 100%;
-  background: #f8f8f8;
-  padding: 40px 60px;
-  border-top: 1px solid #e5e5e5;
+  background: #000;
+  padding: 50px 20px;
+  font-family: Arial, sans-serif;
+  color: #fff;
 }
 
-/* ---------- TOP ---------- */
-.top {
+.container {
   display: flex;
   justify-content: space-between;
+  gap: 80px; /* spacing between columns */
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.left {
-  max-width: 300px;
+.column {
+  flex: 1;
+  min-width: 220px; /* responsive */
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 800;
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #fff;
 }
 
-.desc {
-  margin-top: 10px;
+.subtitle {
   font-size: 14px;
-  color: #555;
+  margin-bottom: 20px;
+  color: #ccc;
 }
 
-/* Links grid */
-.linksGrid {
+.subscribe {
   display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.linkBox h4 {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-size: 14px;
 }
 
-.linkBox p {
+.button {
+  padding: 12px 25px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.text {
   font-size: 14px;
   margin: 6px 0;
-  cursor: pointer;
-  color: #555;
+  color: #ccc;
 }
 
-.linkBox p:hover {
-  color: black;
-}
-
-/* ---------- BOTTOM ---------- */
-.bottom {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-
+/* Payment icons row */
+.paymentIcons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.social span {
-  font-size: 20px;
-  margin-left: 15px;
+.paymentIcons img {
+  width: 40px;
+  height: auto;
   cursor: pointer;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer {
-    padding: 30px 20px;
-  }
+/* Horizontal white line */
+.divider {
+  border: 0;
+  border-top: 1px solid #fff;
+  margin: 30px 0 10px;
+}
 
-  .top {
+.copy {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
     gap: 30px;
   }
 
-  .bottom {
+  .subscribe {
     flex-direction: column;
-    gap: 15px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .paymentIcons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .input {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+
+  .paymentIcons img {
+    width: 30px;
   }
 }
