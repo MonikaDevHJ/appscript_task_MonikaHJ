@@ -14,28 +14,24 @@ import profile from "../../../public/assets/profile.svg";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   return (
     <>
       <nav className={styles.navbar}>
 
-        {/* LEFT: Hamburger for mobile, LogoIcon for desktop */}
-        <div
-          className={styles.leftSection}
-          onClick={() => setOpenMenu(!openMenu)}
-        >
-          {/* Hamburger visible only in mobile */}
+        {/* LEFT SECTION */}
+        <div className={styles.leftSection} onClick={() => setOpenMenu(!openMenu)}>
           <Image src={MenuIcon} alt="menu" width={28} height={28} className={styles.mobileMenuIcon} />
-
-          {/* Logo icon visible only on desktop */}
           <Image src={LogoIcon} alt="logo icon" width={32} height={32} className={styles.desktopLogoIcon} />
         </div>
 
-        {/* MIDDLE SECTION (Logo Text + Menu for Desktop) */}
+        {/* CENTER SECTION */}
         <div className={styles.centerSection}>
-          <div className={styles.logo}>LOGO</div>   
+          <div className={styles.logo}>LOGO</div>
 
-          {/* Desktop Menu */}
           <ul className={styles.menu}>
             <li>SHOP</li>
             <li>BAGS</li>
@@ -44,16 +40,35 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* RIGHT ICONS */}
-        <div className={styles.rightSection}>
-          <Image src={searchnormal} alt="search" width={20} height={20} />
-          <Image src={heart} alt="wishlist" width={20} height={20} />
-          <Image src={shoppingbag} alt="cart" width={20} height={20} />
-          <Image src={profile} alt="profile" width={20} height={20} />
+        {/* RIGHT SECTION + DROPDOWN */}
+        <div className={styles.rightWrapper}>
+          <div className={styles.rightSection}>
+            <Image src={searchnormal} alt="search" width={20} height={20} />
+            <Image src={heart} alt="wishlist" width={20} height={20} />
+            <Image src={shoppingbag} alt="cart" width={20} height={20} />
+            <Image src={profile} alt="profile" width={20} height={20} />
+          </div>
+
+          {/* LANGUAGE DROPDOWN */}
+          <div className={styles.dropdownContainer}>
+            <button onClick={toggleDropdown} className={styles.dropdownButton}>
+              ENG
+              <span className={`${styles.arrow} ${showDropdown ? styles.open : ""}`}>⌄</span>
+            </button>
+
+            {showDropdown && (
+              <div className={styles.dropdownMenu}>
+                <p className={styles.dropdownItem}>English</p>
+                <p className={styles.dropdownItem}>Spanish</p>
+                <p className={styles.dropdownItem}>French</p>
+              </div>
+            )}
+          </div>
         </div>
+
       </nav>
 
-      {/* MOBILE DROPDOWN MENU */}
+      {/* MOBILE MENU DROPDOWN */}
       {openMenu && (
         <ul className={styles.mobileMenu}>
           <li>SHOP</li>
