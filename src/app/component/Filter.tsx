@@ -3,12 +3,16 @@ import { useState } from "react";
 import styles from "../styles/Filter.module.css";
 
 export default function Filter() {
+  // which dropdown is open
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // selected checkbox values
   const [selected, setSelected] = useState<{ [key: string]: string[] }>({});
 
+  // custom checkbox state
+  const [customizable, setCustomizable] = useState(false);
+
   const filters = [
-    { title: "CUSTOMIZABLE", options: ["Yes", "No"] },
     { title: "IDEAL FOR", options: ["Men", "Women", "All"] },
     { title: "OCCASION", options: ["Work", "Casual", "Party"] },
     { title: "FABRIC", options: ["Cotton", "Leather", "Nylon"] },
@@ -16,10 +20,10 @@ export default function Filter() {
     { title: "SUITABLE FOR", options: ["Adults", "Kids", "All"] },
   ];
 
+  // checkbox toggle for dropdown filters
   const toggleOption = (title: string, option: string) => {
     setSelected((prev) => {
       const arr = prev[title] || [];
-
       return arr.includes(option)
         ? { ...prev, [title]: arr.filter((x) => x !== option) }
         : { ...prev, [title]: [...arr, option] };
@@ -28,21 +32,34 @@ export default function Filter() {
 
   return (
     <div className={styles.filterContainer}>
+      
+      {/* ------------------ CUSTOMIZABLE (special) ------------------ */}
+      <div className={styles.filterBox}>
+        <div className={styles.singleRow}>
+          <label className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              checked={customizable}
+              onChange={() => setCustomizable(!customizable)}
+            />
+            <span>CUSTOMIZABLE</span>
+          </label>
+        </div>
+      </div>
+
+      {/* ------------------ OTHER FILTERS ------------------ */}
       {filters.map((item, index) => {
         const selectedValues = selected[item.title] || [];
 
         return (
           <div key={index} className={styles.filterBox}>
             
-            {/* Header row (expand collapse) */}
+            {/* Header Row */}
             <div
               className={styles.topRow}
-              onClick={() =>
-                setOpenIndex(openIndex === index ? null : index)
-              }
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <h4>{item.title}</h4>
-
               <span
                 className={`${styles.arrow} ${
                   openIndex === index ? styles.open : ""
@@ -52,14 +69,14 @@ export default function Filter() {
               </span>
             </div>
 
-            {/* Selected values */}
+            {/* Selected Text */}
             <p className={styles.selectedValue}>
               {selectedValues.length > 0
                 ? selectedValues.join(", ")
                 : "All"}
             </p>
 
-            {/* Dropdown options */}
+            {/* Dropdown */}
             {openIndex === index && (
               <div className={styles.dropdownMenu}>
                 {item.options.map((opt, i) => (

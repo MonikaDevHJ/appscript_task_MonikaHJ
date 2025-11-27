@@ -4,12 +4,27 @@
   border-right: 1px solid #e5e5e5;
 }
 
+/* each section */
 .filterBox {
   padding: 20px 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Header row */
+/* CUSTOMIZABLE SINGLE CHECKBOX */
+.singleRow {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Dropdown title row */
 .topRow {
   display: flex;
   align-items: center;
@@ -22,7 +37,7 @@
   font-weight: 700;
 }
 
-/* selected text */
+/* Small text below title */
 .selectedValue {
   font-size: 14px;
   color: #666;
@@ -30,25 +45,24 @@
   padding-left: 4px;
 }
 
-/* Arrow */
+/* Arrow rotate */
 .arrow {
-  transition: 0.3s ease;
+  transition: .3s ease;
 }
-
 .open {
   transform: rotate(180deg);
 }
 
-/* Dropdown box */
+/* dropdown area */
 .dropdownMenu {
   margin-top: 10px;
   border: 1px solid #e5e5e5;
   padding: 10px 0;
-  border-radius: 6px;
   background: #fff;
+  border-radius: 6px;
 }
 
-/* Single option row */
+/* each checkbox row inside dropdown */
 .optionRow {
   display: flex;
   align-items: center;
@@ -61,7 +75,6 @@
   background: #f5f5f5;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .filterContainer {
     width: 100%;
