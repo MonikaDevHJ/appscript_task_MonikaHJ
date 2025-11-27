@@ -1,0 +1,86 @@
+.footer {
+  width: 100%;
+  background: #f8f8f8;
+  padding: 40px 60px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* ---------- TOP ---------- */
+.top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.left {
+  max-width: 300px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.desc {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Links grid */
+.linksGrid {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.linkBox h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.linkBox p {
+  font-size: 14px;
+  margin: 6px 0;
+  cursor: pointer;
+  color: #555;
+}
+
+.linkBox p:hover {
+  color: black;
+}
+
+/* ---------- BOTTOM ---------- */
+.bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social span {
+  font-size: 20px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 20px;
+  }
+
+  .top {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

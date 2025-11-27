@@ -1,200 +1,64 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/ProductCard.module.css";
-import pageStyles from "../../app/page.module.css";
-import Backside_bag from "../../../public/assets/Backside_bag.svg";
-import belt_image from "../../../public/assets/belt_image.svg";
-import black_white_bag from "../../../public/assets/black_white_bag.svg";
-import flat_bag from "../../../public/assets/flat_bag.svg";
-import Vanity_bag from "../../../public/assets/Vanity_bag.svg";
-import white_bag from "../../../public/assets/white_bag.svg";
-import yellow_bag from "../../../public/assets/yellow_bag.svg";
-import Yellow_doll from "../../../public/assets/Yellow_doll.svg";
-import white_cap from "../../../public/assets/white_cap.svg";
+import { fetchProducts } from "../api/getProducts";
 
-export default function ProductCard() {
+// ❤️ Heart icon
+const HeartIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff3b3b">
+    <path d="M12 21s-6.1-4.35-9.5-8.05C-1.4 9.24 2.02 3.5 7.28 3.5c2.07 0 3.86 1.12 4.72 2.77C12.86 4.62 14.65 3.5 16.72 3.5c5.26 0 8.68 5.74 4.78 9.45C18.1 16.65 12 21 12 21z"/>
+  </svg>
+);
+
+export default function ProductCard({ sortType }: { sortType: string }) {
+  const [products, setProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function load() {
+      const data = await fetchProducts();
+      setProducts(data);
+    }
+    load();
+  }, []);
+
+  // 🔥 SORTING LOGIC
+  const sortedProducts = [...products];
+
+  if (sortType === "Price: High to Low") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  } else if (sortType === "Price: Low to High") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (sortType === "Newest First") {
+    sortedProducts.reverse(); // simple logic
+  } else if (sortType === "Popular") {
+    sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+  }
+
   return (
-    <div className={pageStyles.productSection}>
-      <div className={pageStyles.productGrid}>
-        {/* SAMPLE CARD 1 */}
-        <div className={styles.card}>
-          <Image
-            src={Backside_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Puma Bag</p>
-          <p className={styles.price}>100Rs</p>
-        </div>
+    <div className={styles.gridSection}>
+      <div className={styles.grid}>
+        {sortedProducts.map((product: any) => (
+          <div key={product.id} className={styles.card}>
+            <div className={styles.imageWrapper}>
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={300}
+                height={300}
+                className={styles.image}
+              />
 
-        {/* SAMPLE CARD 2 */}
-        <div className={styles.card}>
-          <Image
-            src={Yellow_doll}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Baby Dool</p>
-          <p className={styles.price}>299Rs</p>
-        </div>
+              <div className={styles.wishlist}>
+                <HeartIcon />
+              </div>
+            </div>
 
-        {/* SAMPLE CARD 3 */}
-        <div className={styles.card}>
-          <Image
-            src={belt_image}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Bata Belt</p>
-          <p className={styles.price}>799Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={white_cap}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>WildCraft Cap</p>
-          <p className={styles.price}>789Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={Backside_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Puma Bag</p>
-          <p className={styles.price}>800Rs</p>
-        </div>
-
-        {/* SAMPLE CARD 2 */}
-        <div className={styles.card}>
-          <Image
-            src={Yellow_doll}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Barbie</p>
-          <p className={styles.price}>8080Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={yellow_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>8080Rs</p>
-        </div>
-        <div className={styles.card}>
-          <Image
-            src={flat_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>8080Rs</p>
-        </div>
-        <div className={styles.card}>
-          <Image
-            src={Backside_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>999Rs</p>
-        </div>
-        <div className={styles.card}>
-          <Image
-            src={white_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>899Rs</p>
-        </div>
-        <div className={styles.card}>
-          <Image
-            src={black_white_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>1009Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={white_cap}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>8899Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={Yellow_doll}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>168Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={ Vanity_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>4569Rs</p>
-        </div>
-
-        <div className={styles.card}>
-          <Image
-            src={Backside_bag}
-            alt="product"
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-          <p className={styles.title}>Product Name</p>
-          <p className={styles.price}>856Rs</p>
-        </div>
+            <p className={styles.title}>{product.title}</p>
+            <p className={styles.price}>${product.price}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
